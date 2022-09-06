@@ -1,0 +1,38 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    profiles:
+      - wordpress-blog
+    ports:
+      - 8080:80
+    networks:
+      - wordpress-network
+    container_name: wordpress
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: thainm
+      WORDPRESS_DB_PASSWORD: thainm@2001
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - /opt/data/wordpress:/var/www/html
+
+  mysql:
+    image: mysql:latest 
+    profiles:
+      - wordpress-blog
+    ports:
+      - 3306:3306
+    networks:
+      - wordpress-network
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: thainm
+      MYSQL_PASSWORD: thainm@2001
+    volumes:
+      - /opt/data/mysql:/var/lib/mysql
+
+networks:
+  wordpress-network:
+    
