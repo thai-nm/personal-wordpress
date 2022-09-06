@@ -1,10 +1,10 @@
 services:
   wordpress:
-    image: wordpress:latest
+    image: wordpress:6.0.2-apache
     profiles:
       - wordpress-webapp
     ports:
-      - 8080:80
+      - 80:80
     networks:
       - wordpress-network
     container_name: wordpress
@@ -21,7 +21,7 @@ services:
     profiles:
       - wordpress-webapp
     ports:
-      - 3306:3306
+      - 3306
     networks:
       - wordpress-network
     container_name: mysql
