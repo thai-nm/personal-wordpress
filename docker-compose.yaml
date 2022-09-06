@@ -2,7 +2,7 @@ services:
   wordpress:
     image: wordpress:latest
     profiles:
-      - wordpress-blog
+      - wordpress-webapp
     ports:
       - 8080:80
     networks:
@@ -17,9 +17,9 @@ services:
       - /opt/data/wordpress:/var/www/html
 
   mysql:
-    image: mysql:latest 
+    image: mysql:8.0.30 
     profiles:
-      - wordpress-blog
+      - wordpress-webapp
     ports:
       - 3306:3306
     networks:
